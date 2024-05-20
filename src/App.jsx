@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import MainMenu from './components/MainMenu'
 import Game from './components/Game'
+import Card from './components/Card'
+import GameOver from './components/GameOver'
 
 function App() {
   function setRounds(difficulty) {
@@ -41,8 +43,8 @@ function App() {
 
 
   useEffect(() => {
-    console.log(difficulty);
-    console.log(gameState);
+    // console.log(difficulty);
+    // console.log(gameState);
   }, [difficulty, gameState]);
 
   return (
@@ -50,6 +52,8 @@ function App() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-cloudy">
       {gameState == 'menu' ? <MainMenu setDifficulty={setDifficulty} setGameState={setGameState}/>:<></>}
       {gameState == 'game' ? <Game currentRound={currentRound} totalRounds={totalRounds} score={0} bestScore={bestScore}/>:<></>}
+      {gameState == 'gameOver' ? <GameOver/>:<></>}
+      {/* <Card/> */}
     </div>
   )
 }
