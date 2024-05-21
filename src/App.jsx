@@ -4,6 +4,7 @@ import MainMenu from './components/MainMenu'
 import Game from './components/Game'
 import Card from './components/Card'
 import GameOver from './components/GameOver'
+import FetchData from './components/FetchData'
 
 function App() {
   function setRounds(difficulty) {
@@ -46,6 +47,12 @@ function App() {
     // console.log(difficulty);
     // console.log(gameState);
   }, [difficulty, gameState]);
+
+  let test = 0;
+  if (test == 0) {
+    // FetchData();
+    test = 1;
+  }
 
   return (
     // <div className="flex flex-col items-center justify-center min-h-screen bg-center bg-[url('src/assets/background.gif')]">
