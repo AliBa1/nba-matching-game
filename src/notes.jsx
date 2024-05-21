@@ -2,3 +2,4 @@
 // Database: https://www.thesportsdb.com/free_sports_api
 // Players JSON: https://github.com/bttmly/nba/blob/master/data/players.json
 // NBA Headshots: https://cdn.nba.com/headshots/nba/latest/1040x760/{playerId}.png
+// Use Firebase to hide API Key
