@@ -1,7 +1,6 @@
 // import { useState } from "react"
 // import { useState, useEffect } from "react"
 
-
 const nbaPlayers = [
   "LeBron James",
   "Kevin Durant",
@@ -54,37 +53,47 @@ const nbaPlayers = [
   "Shai Gilgeous-Alexander"
 ];
 
-let chosenPlayers = [];
+function isObjectInArray(object, array) {
+  for (let i = 0; i < array.length; i++) {
+    if (object.name == array[i].name) {
+      return true;
+    }
+  }
 
-function GetRandomInt(max) {
-  return Math.floor(Math.random() * max);
+  return false;
 }
 
-async function FetchPlayer(player) {
+async function fetchPlayer(player) {
   const response = await fetch(`https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=${player}`, {mode: 'cors'});
   const data = await response.json();
   const playerData = data.player[0];
   // console.log("Player data: ", playerData);
-  // console.log("Player name: ", playerData.strPlayer);
-  // console.log("Player image: ", playerData.strCutout);
   return {name: playerData.strPlayer, image: playerData.strCutout};
 }
 
 async function getRandomPlayer() {
+  function GetRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
   const randomPlayerName = nbaPlayers[GetRandomInt(nbaPlayers.length)];
   // console.log("Player Name (before fetch): ", randomPlayerName);
-  const randomPlayer = await FetchPlayer(randomPlayerName);
+  const randomPlayer = await fetchPlayer(randomPlayerName);
   // console.log("Player Data (after fetch): ", randomPlayer);
   return randomPlayer;
 }
 
-async function GetPlayers(totalPlayers, players, setPlayers) {
-  if (players.length < totalPlayers) {
+async function getPlayers(totalPlayers, players, setPlayers) {
+  let updatedPlayers = [];
+
+  while (updatedPlayers.length < totalPlayers) {
     const randomPlayer = await getRandomPlayer();
-    if (!players.includes(randomPlayer)) {
-      setPlayers([...players, randomPlayer]);
+    if (!isObjectInArray(randomPlayer, updatedPlayers)) {
+      updatedPlayers.push(randomPlayer);
     }
   }
+
+  setPlayers(updatedPlayers);
 }
 
-export default GetPlayers
+export default getPlayers

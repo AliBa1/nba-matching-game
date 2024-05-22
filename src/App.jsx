@@ -4,23 +4,27 @@ import MainMenu from './components/MainMenu'
 import Game from './components/Game'
 import Card from './components/Card'
 import GameOver from './components/GameOver'
-import GetPlayers from './components/GetPlayers'
+import getPlayers from './components/GetPlayers'
 
 function App() {
   const [bestScores, setBestScores] = useState({Easy: 0, Medium: 0, Hard: 0});
   const [players, setPlayers] = useState([]);
+  const [gameSettings, setGameSettings] = useState('');
 
-  function setSettings(difficulty) {
+  function setGameVars(difficulty) {
     switch (difficulty) {
       case 'Easy':
-        // GetPlayers(5, players, setPlayers);
-        return {totalRounds: 5, bestScore: bestScores.Easy};
+        getPlayers(5, players, setPlayers);
+        setGameSettings({totalRounds: 5, bestScore: bestScores.Easy});
+        break;
       case 'Medium':
-        // GetPlayers(10, players, setPlayers);
-        return {totalRounds: 10, bestScore: bestScores.Medium};
+        getPlayers(10, players, setPlayers);
+        setGameSettings({totalRounds: 10, bestScore: bestScores.Medium});
+        break;
       case 'Hard':
-        // GetPlayers(15, players, setPlayers);
-        return {totalRounds: 15, bestScore: bestScores.Hard};
+        getPlayers(15, players, setPlayers);
+        setGameSettings({totalRounds: 15, bestScore: bestScores.Hard});
+        break;
       default:
         return 0;
     }
@@ -29,17 +33,16 @@ function App() {
   const [gameState, setGameState] = useState('menu');
   const [difficulty, setDifficulty] = useState('');
   const [currentRound, setCurrentRound] = useState(1);
-  const getSettings = (gameState == 'game' ? (setSettings(difficulty)):0);
-  const totalRounds = (getSettings && getSettings.totalRounds);
-  const bestScore = (getSettings && getSettings.bestScore);
-
+  const totalRounds = (gameSettings && gameSettings.totalRounds);
+  const bestScore = (gameSettings && gameSettings.bestScore);
 
   useEffect(() => {
     // console.log(difficulty);
     // console.log(gameState);
-    // console.log("Players: ", players);
-    GetPlayers(5, players, setPlayers);
-  }, [difficulty, gameState, players]);
+    if (gameState === 'game') {
+      setGameVars(difficulty);
+    }
+  }, [difficulty, gameState]);
 
   return (
     // <div className="flex flex-col items-center justify-center min-h-screen bg-center bg-[url('src/assets/background.gif')]">
