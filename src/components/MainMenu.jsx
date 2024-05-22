@@ -1,12 +1,7 @@
 // import { useState } from 'react'
 // import './MainMenu.css'
 import nbaLogo from '../assets/nba.svg'
-
-function DifficultyButton({onClick, difficulty}) {
-  return (
-    <button onClick={onClick} className="hover:underline text-2xl">{difficulty}</button>
-  )
-}
+import Button from './Button';
 
 function MainMenu({ setDifficulty, setGameState }) {
   function handleClick(difficulty) {
@@ -24,9 +19,9 @@ function MainMenu({ setDifficulty, setGameState }) {
       <div className='flex flex-col items-center'>
         <h2 className="underline text-2xl font-bold">Pick Difficulty</h2>
         <span className="space-x-4">
-          <DifficultyButton onClick={() => handleClick('Easy')} difficulty={"Easy"}/>
-          <DifficultyButton onClick={() => handleClick('Medium')}  difficulty={"Medium"}/>
-          <DifficultyButton onClick={() => handleClick('Hard')}  difficulty={"Hard"}/>
+          <Button onClick={() => handleClick('Easy')} text={"Easy"}/>
+          <Button onClick={() => handleClick('Medium')}  text={"Medium"}/>
+          <Button onClick={() => handleClick('Hard')}  text={"Hard"}/>
         </span>
       </div>
     </div>

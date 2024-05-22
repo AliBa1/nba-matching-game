@@ -1,32 +1,62 @@
-// import { useState } from 'react'
+import { useState } from 'react'
+import ReactLoading from 'react-loading';
+import Card from "./Card"
+import playerInArray from './PlayerInArray';
 // import './Game.css'
 
-import Card from "./Card"
-
-function Game({currentRound, totalRounds, score, bestScore, players}) {
+function Game({ score, currentRound, totalRounds, bestScore, setGameSettings, players, setPlayers, loading, setGameState, setResult}) {
   console.log("Players: ", players);
-  // console.log("Player: ", players[0]);
+  const [playersPicked, setPlayersPicked] = useState([]);
+  const completeRounds = (currentRound == totalRounds ? true : false);
+
   const playerCards = players.map((player, index) => 
-    <div key={player.name + index}>
+    <div key={player.name + index} onClick={() => playerSelected(player)}>
       <Card name={player.name} image={player.image}/>
     </div>
   )
+
+  function updateGameSettings() {
+    setGameSettings({score: score+1, currentRound: currentRound+1, totalRounds: totalRounds, bestScore: (score+1 > bestScore ? score+1:bestScore)});
+  }
+
+  function shufflePlayers(array) {
+    let shuffledArray = array;
+    let index = array.length;
+    while (index != 0) {
+      let randomIndex = Math.floor(Math.random() * index);
+      index--;
+      [shuffledArray[index], shuffledArray[randomIndex]] = [array[randomIndex], array[index]];
+    }
+    setPlayers(shuffledArray);
+  }
+
+  function playerSelected(player) {
+    const pickedTwice = playerInArray(player, playersPicked);
+    // win, lose, otherwise
+    if (completeRounds && !pickedTwice) {
+      updateGameSettings();
+      setResult('won');
+      setGameState('gameOver');
+    } else if (pickedTwice) {
+      setResult('lost');
+      setGameState('gameOver');
+    } else {
+      setPlayersPicked([...playersPicked, player]);
+      shufflePlayers(players);
+      updateGameSettings();
+    }
+  }
+
+  if (loading) {
+    return (
+      <ReactLoading type="bars" color="#ffffff" height={'5%'} width={'5%'} />
+    )
+  }
+
   return (
-    // <div className="flex flex-col items-center justify-center space-y-12 border-4 border-black p-16 bg-white">
-    //   Hello, World!
-    // </div>
-    
     <div className="text-center text-4xl font-bold text-white p-8 space-y-8">
       <h1>Round {currentRound}/{totalRounds}</h1>
-      {/* <div className="flex flex-wrap border place-content-center"> */}
       <div className="grid grid-cols-5 gap-4 place-content-center">
-        {/* <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/> */}
         {playerCards}
       </div>
 
