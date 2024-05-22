@@ -19,3 +19,4 @@ Notes:
 - Players JSON (if needed): https://github.com/bttmly/nba/blob/master/data/players.json
 - NBA Headshots: https://cdn.nba.com/headshots/nba/latest/1040x760/{playerId}.png (id can be from JSON above)
 - Use Firebase to hide API Key (if needed)
+- Could use to get players names instead of manual (optional): https://docs.balldontlie.io/#players
