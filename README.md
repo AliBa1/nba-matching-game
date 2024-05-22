@@ -8,8 +8,8 @@ The goal is to make a game where a unique card is picked each time the user make
 - CSS
 
 ## Challenges
-- Hiding API Key: I wanted to use an API to get images and names but I didn't want my API key to be visible to the public (for good practice) so I decided to use Firebase to set up a backend to hide my API key.
-- Finding and Using an API: I have never used an API before so I was very confunsed on how I was going to find and use one. It took lots of research but once I found one that didn't need an API Key I didn't need to hide it anymore. After that I had trouble using it since I couldn;t get the data to save correctly and there were many errors. At first I was using fetch.then to get the response and data but it wass't working then I switched to async/await which ended up working.
+- Hiding API Key: I wanted to use an API to get images and names but I didn't want my API key to be visible to the public (for good practice) so I would've used Firebase to set up a backend to hide my API key.
+- Finding and Using an API: I have never used an API before so I was very confunsed on how I was going to find and use one. It took lots of research but once I found one that didn't need an API Key I didn't need to hide it anymore. After that I had trouble using it since I couldn't get the data to save correctly and there were many errors. At first I was using fetch then to get the response and data but it wasn't working then I switched to async/await which ended up working.
 - useEffect: I wanted to use useEffect so that my function would run once but it ran until my array was done being processed. I relized that I needed to remove one of the dependencies causing it which took me a while to relize.
 - Rendering Unique Cards: The error above added on to this since I thought I couldn't use a while loop since it would just render too many times. Once it was fixed I was able to just use a while loop so that if it was a duplicate it would run again until it's not.
 
