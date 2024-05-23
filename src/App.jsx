@@ -45,7 +45,6 @@ function App() {
   }, [difficulty, gameState]);
 
   return (
-    // <div className="flex flex-col items-center justify-center min-h-screen bg-center bg-[url('src/assets/background.gif')]">
     <div className="flex flex-col items-center justify-center min-h-screen bg-cloudy">
       {gameState == 'menu' ? <MainMenu setDifficulty={setDifficulty} setGameState={setGameState}/>:<></>}
       {gameState == 'game' ? <Game score={score} currentRound={currentRound} totalRounds={totalRounds} bestScore={bestScore} result={result} setGameSettings={setGameSettings} 

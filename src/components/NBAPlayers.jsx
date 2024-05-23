@@ -47,7 +47,21 @@ const nbaPlayers = [
   "Tyrese Maxey",
   "De'Aaron Fox",
   "Jalen Brunson",
-  "Shai Gilgeous-Alexander"
+  "Shai Gilgeous-Alexander",
+  "Brandon Ingram",
+  "Terry Rozier",
+  "Jalen Green",
+  "Mikal Bridges",
+  "Domantas Sabonis",
+  "D'Angelo Russell",
+  "Brandon Miller",
+  "Austin Reaves",
+  "Malik Monk",
+  "Rudy Gobert",
+  "Naz Reid",
+  "Dillon Brooks",
+  "Jrue Holiday",
+  "Herbert Jones"
 ];
 
 export default nbaPlayers
